@@ -14,12 +14,12 @@ function setPlay(elem) {
 
 function checkForPopup() {
 	const myDrillah = document.querySelector("tp-yt-iron-overlay-backdrop.opened");
-  	const myDrillahTwo = document.querySelector("ytd-popup-container.style-scope.ytd-app");
+	const myDrillahTwo = document.querySelector("ytd-enforcement-message-view-model");
 	const myDrillahThree = document.querySelector("button.ytp-play-button");
 
 	if (myDrillah != null && myDrillahTwo != null) {
 		myDrillah.classList.remove("opened");
-		myDrillahTwo.style.display = "none";
+		myDrillahTwo.parentElement.remove();
 		setPlay(myDrillahThree);
 
 		__data.popupsRemoved++;
