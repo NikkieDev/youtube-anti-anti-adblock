@@ -1,0 +1,17 @@
+{
+	"manifest_version": 3,
+	"name": "Youtube Adblock Blocker blocker",
+	"description": "Blocks the youtube adblocker blocker",
+	"permissions": ["storage"],
+	"author": "NikkieDev",
+	"version": "1.0",
+	"content_scripts": [
+		{
+			"matches": ["https://youtube.com/*", "https://www.youtube.com/*"],
+			"js": ["blocker.js"]
+		}
+	],
+	"action": {
+		"default_popup": "data.html"
+	}
+}
