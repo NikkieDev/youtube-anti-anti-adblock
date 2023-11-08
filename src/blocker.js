@@ -4,27 +4,28 @@ function setup() {
 	chrome.storage.sync.get(["popupsRemoved"], (result) => {
 		if (result.popupsRemoved !== undefined) {
 			__data.popupsRemoved = result.popupsRemoved;
-			document.querySelector("span#popupsRemoved__value").innerHTML = result
-		} else console.warn("undefined lmao")
+		} else chrome.storage.sync.set({ popupsRemoved: __data.popupsRemoved });
 	})
+}
+
+function setPlay(elem) {
+	elem.click();
 }
 
 function checkForPopup() {
 	const myDrillah = document.querySelector("tp-yt-iron-overlay-backdrop.opened");
-  	const myDrillahTwo = document.querySelector(
-    	"ytd-popup-container.style-scope.ytd-app",
-  	);
+  	const myDrillahTwo = document.querySelector("ytd-popup-container.style-scope.ytd-app");
+	const myDrillahThree = document.querySelector("button.ytp-play-button");
 
 	if (myDrillah != null && myDrillahTwo != null) {
-		myDrillah
-			.querySelector("tp-yt-paper-dialog")
-			.classList.remove("opened");
-
+		myDrillah.classList.remove("opened");
 		myDrillahTwo.style.display = "none";
-		console.info("Removed popup!");
+		setPlay(myDrillahThree);
+
 		__data.popupsRemoved++;
 		chrome.storage.sync.set({ popupsRemoved: __data.popupsRemoved });
-		document.querySelector("div#popupsRemoved__value>span").innerHTML = __data.popupsRemoved;
+		
+		console.info("Removed popup!");
 	}
 }(function () {
 	"use strict";
