@@ -1,10 +1,15 @@
 const __data = { popupsRemoved: 0 };
 
 async function setup() {
-	await chrome.storage.sync.get(["popupsRemoved"], (result) => {
+	await chrome.storage.sync.get(["popupsRemoved", "popupsPauseOption", "popupsTrackOption"], (result) => {
 		if (result.popupsRemoved !== undefined) {
 			__data.popupsRemoved = result.popupsRemoved;
 		} else chrome.storage.sync.set({ popupsRemoved: __data.popupsRemoved });
+
+		if (result.popupsPauseOption == undefined)
+			chrome.storage.sync.set({ popupsPauseOption: false });
+		if (result.popupsTrackOption == undefined)
+			chrome.storage.sync.set({ popupsTrackOption: true });
 	})
 }
 
