@@ -1,7 +1,7 @@
-const __data = { popupsRemoved: 0 };
+const __data = { popupsRemoved: 0, checkVideoDone: null };
 
 async function setup() {
-	await chrome.storage.sync.get(["popupsRemoved", "popupsPauseOption", "popupsTrackOption", "autoPlayOption"], (result) => {
+	await chrome.storage.sync.get(["popupsRemoved", "popupsPauseOption", "popupsTrackOption", "autoplayOption"], (result) => {
 		if (result.popupsRemoved !== undefined) {
 			__data.popupsRemoved = result.popupsRemoved;
 		} else chrome.storage.sync.set({ popupsRemoved: __data.popupsRemoved });
@@ -10,9 +10,9 @@ async function setup() {
 			chrome.storage.sync.set({ popupsPauseOption: false });
 		if (result.popupsTrackOption == undefined)
 			chrome.storage.sync.set({ popupsTrackOption: true });
-		if (result.autoPlayOption == undefined)
-			chrome.storage.sync.set({ autoPlayOption: true });
-	})
+		if (result.autoplayOption == undefined)
+			chrome.storage.sync.set({ autoplayOption: true });
+	});
 }
 
 function setPlay(elem) {
@@ -43,33 +43,34 @@ async function checkForPopup() {
 }
 
 function playNextVideo() {
-	console.log(`[AAP] Selecting next video`);
+	console.log("[AAP] Autoplay is on", 
+		`[AAP] Selecting next video`);
+
 	const drillahs = document.querySelectorAll("a#thumbnail.yt-simple-endpoint.inline-block.style-scope.ytd-thumbnail");
 	setTimeout(function() {
 		location.href = drillahs[6].href;
 	}, 2000)
 }
 
-async function autoPlayIsOn() {
-	await chrome.storage.sync.get(['autoPlayOption'], function(result) {
-
-	});
-}
-
-function checkIfVideoDone() {
+async function checkIfVideoDone() {
 	if (location.pathname == "/watch") {
 		const myDrillah = document.querySelector("div.ytp-progress-bar");
-		autoPlayIsOn().then((r) => {
-			if (r == true && ~~myDrillah.getAttribute('aria-valuenow') == ~~myDrillah.getAttribute('aria-valuemax'))
+
+		if (~~myDrillah.getAttribute("aria-valuenow") == ~~myDrillah.getAttribute("aria-valuemax")) {
+			const autoplay = await chrome.storage.sync.get(["autoplayOption"]);
+
+			if (autoplay.autoplayOption == true)
 				playNextVideo();
-		}).catch(e => console.error(e));
+			else
+				console.log(`[AAP] autoplay is disabled.`);
+		}
 	}
 }
 
-(async function () {
+(async function() {
 	"use strict";
 	await setup();
 	await checkForPopup();
 	setInterval(await checkForPopup, 2000);
-	setInterval(checkIfVideoDone, 5000);		
+	__data.checkVideoDone = setInterval(checkIfVideoDone, 5000);
 })();

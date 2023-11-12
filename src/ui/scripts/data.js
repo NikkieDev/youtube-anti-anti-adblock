@@ -1,35 +1,29 @@
 function update() {
     chrome.storage.sync.get(["popupsRemoved"], function(result){
-        if (result.popupsRemoved == undefined){
-            chrome.storage.sync.set({ popupsRemoved: 0 });
-            document.querySelector("span#popupsRemoved__value").innerHTML = 0;
-        } else document.querySelector("span#popupsRemoved__value").innerHTML = result.popupsRemoved;
-
+        document.querySelector("span#popupsRemoved__value").innerHTML = result.popupsRemoved ?? 0;
         console.log(`[AAP] popups removed amount set to ${result.popups}`);
     });
 
     chrome.storage.sync.get(["popupsTrackOption"], function(result) {
-        if (result.popupsTrackOption == undefined) {
-            chrome.storage.sync.set({ popupsTrackOption: true });
-            document.querySelector("#popupsTrackOption__value").checked = true;
-        } else document.querySelector("#popupsTrackOption__value").checked = result.popupsTrackOption;
-
+        document.querySelector("#popupsTrackOption__value").checked = result.popupsTrackOption ?? true;
         console.log(`[AAP] popups blocked tracking set to ${result.popupsTrackOption}`);
     });
 
     chrome.storage.sync.get(["popupsPauseOption"], function(result) {
-        if (result.popupsPauseOption == undefined) {
-            chrome.storage.sync.set({ popupsPauseOption: false });
-            document.querySelector("#popupsPauseOption__value").checked = false;
-        } else document.querySelector("#popupsPauseOption__value").checked = result.popupsPauseOption;
-
+        document.querySelector("#popupsPauseOption__value").checked = result.popupsPauseOption ?? false;
         console.log(`[AAP] popups pause option set to ${result.popupsPauseOption}`);
     })
+
+    chrome.storage.sync.get(["autoplayOption"], function(result) {
+        document.querySelector("#autoplayOption__value").checked = result.autoplayOption ?? true;
+        console.log(`[AAP] autoplay set to ${result.autoplayOption}`);
+    });
 }
 
 function setListeners() {
     const trackerOptions = document.querySelector("#popupsTrackOption__value");
     const pausedOptions = document.querySelector("#popupsPauseOption__value");
+    const autoplayOption = document.querySelector("#autoplayOption__value");
 
     trackerOptions.addEventListener("click", function() {
         chrome.storage.sync.set({ popupsTrackOption: trackerOptions.checked });
@@ -40,10 +34,16 @@ function setListeners() {
         chrome.storage.sync.set({ popupsPauseOption: pausedOptions.checked });
         console.log(`[AAP] popups pause option set to ${pausedOptions.checked}`);
     });
+
+    autoplayOption.addEventListener('click', function() {
+        chrome.storage.sync.set({ autoplayOption: autoplayOption.checked });
+        console.log(`[AAP] autoplay set to ${autoplayOption.checked}`);
+    });
 }
 
-(function() {
+(async function() {
     'use strict';
+    // await setup();
     update();
     setListeners();
 })();
