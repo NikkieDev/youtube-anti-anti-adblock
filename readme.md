@@ -4,4 +4,4 @@
 
 
 Made by KuByX Software
-KuByX NikkieDev & KuByX Stuncs
+* KuByX NikkieDev & KuByX Stuncs
