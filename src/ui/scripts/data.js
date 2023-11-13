@@ -1,4 +1,4 @@
-export function update() {
+function update() {
     chrome.storage.sync.get(["popupsRemoved"], function(result){
         document.querySelector("span#popupsRemoved__value").innerHTML = result.popupsRemoved ?? 0;
         console.log(`[AAP] popups removed amount set to ${result.popups}`);

@@ -1,4 +1,4 @@
-export function set() {
+function set() {
     const trackerOptions = document.querySelector("#popupsTrackOption__value");
     const pausedOptions = document.querySelector("#popupsPauseOption__value");
     const autoplayOption = document.querySelector("#autoplayOption__value");

@@ -1,5 +1,5 @@
 const __data = { popupsRemoved: 0, checkVideoDone: null };
-const video = require('./video');
+const { setPlay } = import('./video');
 
 export async function checkForPopup() {
 	const myDrillah = document.querySelector("tp-yt-iron-overlay-backdrop.opened");
@@ -11,7 +11,7 @@ export async function checkForPopup() {
 			if (result.popupsPauseOption == false) {
 				myDrillah.classList.remove("opened");
 				myDrillahTwo.parentElement.remove();
-				video.setPlay(myDrillahThree);
+				setPlay(myDrillahThree);
 
 				if (result.popupsTrackOption == true) {
 					__data.popupsRemoved++;

@@ -1,6 +1,6 @@
 const __data = { popupsRemoved: 0, checkVideoDone: null };
-const blocker = require('./scripts/blocker');
-const video = require('./scripts/video');
+const { checkForPopup } = import('./scripts/blocker');
+const { checkIfVideoDone } = import('./scripts/video');
 
 class Main {
     constructor() { };
@@ -25,6 +25,6 @@ class Main {
     'use strict';
 
     await Main.setup();
-    setInterval(blocker.checkForPopup, 2000);
-    __data.checkVideoDone = setInterval(video.checkIfVideoDone, 5000);
+    setInterval(checkForPopup, 2000);
+    __data.checkVideoDone = setInterval(checkIfVideoDone, 5000);
 })()
