@@ -1,12 +1,4 @@
-const { setPlay } = import('./video');
-
-const __data = {
-	popupsRemoved: 0,
-	mealbarsRemoved: 0,
-	checkVideoDone: null 
-};
-
-export async function checkForPopup() {
+async function checkForPopup() {
 	const myDrillah = document.querySelector("tp-yt-iron-overlay-backdrop.opened");
 	const myDrillahTwo = document.querySelector("ytd-enforcement-message-view-model");
 	const myDrillahThree = document.querySelector("button.ytp-play-button");
@@ -29,7 +21,7 @@ export async function checkForPopup() {
 	}
 }
 
-export async function checkForMealbar() {
+async function checkForMealbar() {
 	// <yt-mealbar-promo-renderer no-button-line="" dialog="true" class="style-scope ytd-popup-container" tabindex="-1" has-full-height-image="">
 
 	const myDrillah = document.querySelector("yt-mealbar-promo-renderer.style-scope.ytd-popup-container");

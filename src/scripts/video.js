@@ -1,6 +1,6 @@
 function playNextVideo() {
-	console.log("[AAP] Autoplay is on", 
-		`[AAP] Selecting next video`);
+	console.log("[YAH] Autoplay is on", 
+		`[YAH] Selecting next video`);
 
 	const drillahs = document.querySelectorAll("a#thumbnail.yt-simple-endpoint.inline-block.style-scope.ytd-thumbnail");
 	setTimeout(function() {
@@ -8,7 +8,7 @@ function playNextVideo() {
 	}, 2000)
 }
 
-export async function checkIfVideoDone() {
+async function checkIfVideoDone() {
 	if (location.pathname == "/watch") {
 		const myDrillah = document.querySelector("div.ytp-progress-bar");
 
@@ -23,6 +23,6 @@ export async function checkIfVideoDone() {
 	}
 }
 
-export function setPlay(elem) {
+function setPlay(elem) {
 	elem.click();
 }

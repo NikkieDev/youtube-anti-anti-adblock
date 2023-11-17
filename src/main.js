@@ -1,10 +1,6 @@
-const __data = { popupsRemoved: 0, checkVideoDone: null };
-const { checkForPopup } = import('./scripts/blocker');
-const { checkIfVideoDone } = import('./scripts/video');
+const __data = { popupsRemoved: 0, checkVideoDone: null, mealbarsRemoved: 0 };
 
 class Main {
-    constructor() { };
-
     static async setup() {
         await chrome.storage.sync.get(["popupsRemoved", "popupsPauseOption", "popupsTrackOption", "autoplayOption", "removeMealbars"], (result) => {
             let buffer = {  }
@@ -20,14 +16,13 @@ class Main {
                 buffer.autoplayOption = true;
             if (result.removeMealbars == undefined)
                 buffer.removeMealbars = true;
+            
         });
+        
+        
+        setInterval(checkForPopup, 2000);
+        __data.checkVideoDone = setInterval(checkIfVideoDone, 5000);
     }
 }
 
-(async function() {
-    'use strict';
-
-    await Main.setup();
-    setInterval(checkForPopup, 2000);
-    __data.checkVideoDone = setInterval(checkIfVideoDone, 5000);
-})()
+Main.setup();
