@@ -18,7 +18,7 @@ export async function checkIfVideoDone() {
 			if (autoplay.autoplayOption == true)
 				playNextVideo();
 			else
-				console.log(`[AAP] autoplay is disabled.`);
+				console.log(`[YAH] autoplay is disabled.`);
 		}
 	}
 }

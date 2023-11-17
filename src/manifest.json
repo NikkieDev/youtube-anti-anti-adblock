@@ -1,7 +1,7 @@
 {
 	"manifest_version": 3,
 	"name": "Youtube Adblock Helper",
-	"description": "Blocks the youtube adblocker blocker",
+	"description": "Prevents the youtube adblocker popup",
 	"permissions": ["storage"],
 	"author": "NikkieDev",
 	"version": "1.4",
@@ -12,7 +12,15 @@
 		}
 	],
 	"action": {
-		"default_popup": "ui/data.html",
+		"default_popup": "ui/main.html",
 		"default_icon": "resources/icon.png"
-	}
+	},
+	"web_accessible_resources": [
+		{
+			"resources": [
+				"../data/sync-storage.json"
+			],
+			"matches": ["https://youtube.com/*", "https://www.youtube.com/*"]
+		}
+	]
 }

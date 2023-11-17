@@ -6,17 +6,20 @@ class Main {
     constructor() { };
 
     static async setup() {
-        await chrome.storage.sync.get(["popupsRemoved", "popupsPauseOption", "popupsTrackOption", "autoplayOption"], (result) => {
+        await chrome.storage.sync.get(["popupsRemoved", "popupsPauseOption", "popupsTrackOption", "autoplayOption", "removeMealbars"], (result) => {
+            let buffer = {  }
             if (result.popupsRemoved !== undefined) {
                 __data.popupsRemoved = result.popupsRemoved;
             } else chrome.storage.sync.set({ popupsRemoved: __data.popupsRemoved });
     
             if (result.popupsPauseOption == undefined)
-                chrome.storage.sync.set({ popupsPauseOption: false });
+                buffer.popupsPauseOption = false;
             if (result.popupsTrackOption == undefined)
-                chrome.storage.sync.set({ popupsTrackOption: true });
+                buffer.popupsTrackOption = true;
             if (result.autoplayOption == undefined)
-                chrome.storage.sync.set({ autoplayOption: true });
+                buffer.autoplayOption = true;
+            if (result.removeMealbars == undefined)
+                buffer.removeMealbars = true;
         });
     }
 }
