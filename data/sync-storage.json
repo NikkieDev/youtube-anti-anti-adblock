@@ -1,0 +1,9 @@
+{
+    "required": [
+        "popupsRemoved",
+        "popupsPauseOption",
+        "popupsTrackOption",
+        "autoplayOption",
+        "removeMealbars"
+    ]
+}
