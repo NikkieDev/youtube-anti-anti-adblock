@@ -9,3 +9,8 @@
 .bg-gray {
     background-color: #111928;
 }
+
+#dataView__button {
+    all: unset;
+    cursor: pointer;
+}
