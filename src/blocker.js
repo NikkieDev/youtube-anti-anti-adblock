@@ -54,23 +54,26 @@ function playNextVideo() {
 
 async function checkIfVideoDone() {
 	if (location.pathname == "/watch") {
-		const myDrillah = document.querySelector("div.ytp-progress-bar");
+		const myDaddyDrillah = document.querySelector("div.ad-created.ad-showing.ad-interrupting");
+		
+		if (myDaddyDrillah == null) {
+			const myDrillah = document.querySelector("div.ytp-progress-bar");
 
-		if (~~myDrillah.getAttribute("aria-valuenow") == ~~myDrillah.getAttribute("aria-valuemax")) {
-			const autoplay = await chrome.storage.sync.get(["autoplayOption"]);
+			if (~~myDrillah.getAttribute("aria-valuenow") == ~~myDrillah.getAttribute("aria-valuemax")) {
+				const autoplay = await chrome.storage.sync.get(["autoplayOption"]);
 
-			if (autoplay.autoplayOption == true)
-				playNextVideo();
-			else
-				console.log(`[AAP] autoplay is disabled.`);
-		}
+				if (autoplay.autoplayOption == true)
+					playNextVideo();
+				else
+					console.log(`[AAP] autoplay is disabled.`);
+			}
+		} else console.log(`[AAP] playing ad, ignoring autoplay`);
 	}
 }
 
 (async function() {
 	"use strict";
 	await setup();
-	await checkForPopup();
 	setInterval(await checkForPopup, 2000);
 	__data.checkVideoDone = setInterval(checkIfVideoDone, 5000);
 })();
