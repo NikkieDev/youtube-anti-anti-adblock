@@ -1,19 +1,19 @@
 {
     "required": [
-        "popupsRemoved",
         "popupsPauseOption",
-        "dataStore",
+        "mealbarsPauseOption",
+        "dataStoreOption",
         "autoplayOption",
-        "removeMealbars",
-        "mealbarsRemoved"
+        "popupsRemovedData",
+        "mealbarsRemovedData"
     ],
 
     "onInstall": {
-        "popupsRemoved": 0,
         "popupsPauseOption": false,
-        "dataStore": false,
+        "mealbarsPauseOption": false,
+        "dataStoreOption": false,
         "autoplayOption": true,
-        "removeMealbars": true,
-        "mealbarsRemoved": 0
+        "popupsRemovedData": 0,
+        "mealbarsRemovedData": 0
     }
 }

@@ -10,7 +10,20 @@
     background-color: #111928;
 }
 
-#dataView__button {
-    all: unset;
+.bg-discrete {
+    background-color: rgba(255,255,255,0.1);
+    margin: 2px 5px;
+}
+
+img#back-button {
     cursor: pointer;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: transparent
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: gray;
 }
