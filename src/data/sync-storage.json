@@ -1,0 +1,19 @@
+{
+    "required": [
+        "popupsRemoved",
+        "popupsPauseOption",
+        "dataStore",
+        "autoplayOption",
+        "removeMealbars",
+        "mealbarsRemoved"
+    ],
+
+    "onInstall": {
+        "popupsRemoved": 0,
+        "popupsPauseOption": false,
+        "dataStore": false,
+        "autoplayOption": true,
+        "removeMealbars": true,
+        "mealbarsRemoved": 0
+    }
+}

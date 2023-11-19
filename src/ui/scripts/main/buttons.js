@@ -1,0 +1,1 @@
+const dataView = document.querySelector('button#dataView__button').addEventListener('click',()=>window.location.href="views/data.html");

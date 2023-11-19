@@ -1,7 +1,12 @@
 async function update() {
     console.log("Updating")
-    await fetch(chrome.runtime.getURL("../data/sync-storage.json"))
-    .then(response => response.json()).then(response => console.log(response));
+    await fetch(chrome.runtime.getURL("data/sync-storage.json"))
+    .then(response => response.json()).then(async response => {
+        console.log(response);
+        // await chrome.storage.sync.get(Object.keys(response.required), function(result) {
+        //     console.log(result);
+        // })
+    });
     // chrome.storage.sync.get(["popupsRemoved"], function(result){
     //     document.querySelector("span#popupsRemoved__value").innerHTML = result.popupsRemoved ?? 0;
     //     console.log(`[YAH] popups removed amount set to ${result.popups}`);

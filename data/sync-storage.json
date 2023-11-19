@@ -1,9 +1,0 @@
-{
-    "required": [
-        "popupsRemoved",
-        "popupsPauseOption",
-        "dataStore",
-        "autoplayOption",
-        "removeMealbars"
-    ]
-}

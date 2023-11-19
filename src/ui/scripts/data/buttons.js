@@ -1,0 +1,1 @@
+const mainView = document.querySelector('img#back-button').addEventListener('click',()=> window.location.href="../main.html");

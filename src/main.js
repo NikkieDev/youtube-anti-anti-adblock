@@ -19,9 +19,9 @@ class Main {
             
         });
         
-        
+        update();
         setInterval(checkForPopup, 2000);
-        __data.checkVideoDone = setInterval(checkIfVideoDone, 5000);
+        __data.checkVideoDone = setInterval(await checkIfVideoDone, 5000);
     }
 }
 

@@ -1,9 +1,11 @@
 async function checkForPopup() {
-	const myDrillah = document.querySelector("tp-yt-iron-overlay-backdrop.opened");
-	const myDrillahTwo = document.querySelector("ytd-enforcement-message-view-model");
-	const myDrillahThree = document.querySelector("button.ytp-play-button");
+	const drillahList = [
+		document.querySelector("tp-yt-iron-overlay-backdrop.opened"),
+		document.querySelector("ytd-enforcement-message-view-model"),
+		document.querySelector("button.ytp-play-button")
+	];
 
-	if (myDrillah != null && myDrillahTwo != null) {
+	if (drillahList[0] != null && drillahList[1] != null) {
 		await chrome.storage.sync.get(["popupsPauseOption", "dataStore"], function(result) {
 			if (result.popupsPauseOption == false) {
 				drillahList[0].classList.remove("opened");
@@ -22,8 +24,7 @@ async function checkForPopup() {
 }
 
 async function checkForMealbar() {
-	// <yt-mealbar-promo-renderer no-button-line="" dialog="true" class="style-scope ytd-popup-container" tabindex="-1" has-full-height-image="">
-
+	// <yt-mealbar-promo-renderer no-button-line="" dialog="true" class="style-scope ytd-popup-container" tabindex="-1" has-full-height-image="">	
 	const myDrillah = document.querySelector("yt-mealbar-promo-renderer.style-scope.ytd-popup-container");
 	let daddyDrillah = myDrillah.parentElement;
 
