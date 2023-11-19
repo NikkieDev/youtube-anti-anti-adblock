@@ -2,16 +2,20 @@ const __data = { popupsRemoved: 0, checkVideoDone: null };
 const { setPlay } = import('./video');
 
 export async function checkForPopup() {
-	const myDrillah = document.querySelector("tp-yt-iron-overlay-backdrop.opened");
-	const myDrillahTwo = document.querySelector("ytd-enforcement-message-view-model");
-	const myDrillahThree = document.querySelector("button.ytp-play-button");
+	const drillahList = [
+		document.querySelector("tp-yt-iron-overlay-backdrop.opened"),
+		document.querySelector("ytd-enforcement-message-view-model"),
+		document.querySelector("button.ytp-play-button")
+	];
 
-	if (myDrillah != null && myDrillahTwo != null) {
-		await chrome.storage.sync.get(["popupsPauseOption", "popupsTrackOption"], function(result) {
+	const drillahRequirements = ["popupsPauseOption", "popupsTrackOption"];
+
+	if (drillahList[0] != null && drillahList[1] != null) {
+		await chrome.storage.sync.get(drillahRequirements, function(result) {
 			if (result.popupsPauseOption == false) {
-				myDrillah.classList.remove("opened");
-				myDrillahTwo.parentElement.remove();
-				setPlay(myDrillahThree);
+				drillahList[0].classList.remove("opened");
+				drillahList[1].parentElement.remove();
+				setPlay(drillahList[2]);
 
 				if (result.popupsTrackOption == true) {
 					__data.popupsRemoved++;

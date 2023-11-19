@@ -14,5 +14,8 @@
 	"action": {
 		"default_popup": "ui/data.html",
 		"default_icon": "resources/icon.png"
-	}
+	},
+	"web_accessible_resources": [{
+		"resources": ["ui/json/userdata.json"]
+	}]
 }
