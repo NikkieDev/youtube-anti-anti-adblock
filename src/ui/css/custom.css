@@ -18,12 +18,3 @@
 img#back-button {
     cursor: pointer;
 }
-
-::-webkit-scrollbar {
-    width: 10px;
-    background-color: transparent
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: gray;
-}
